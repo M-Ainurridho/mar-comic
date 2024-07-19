@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import { poppins } from "./ui/fonts";
+import Navbar from "./ui/navbar";
 
 export const metadata: Metadata = {
    title: "Create Next App",
@@ -15,7 +15,10 @@ export default function RootLayout({
 }>) {
    return (
       <html lang="en">
-         <body className={poppins.className}>{children}</body>
+         <body className={poppins.className}>
+            <Navbar />
+            {children}
+         </body>
       </html>
    );
 }
