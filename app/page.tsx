@@ -1,5 +1,9 @@
+import Template from "./ui/home/template";
+
 const Home = () => {
-   return <p>Home</p>;
+   return (
+      <Template />
+   );
 };
 
 export default Home;
