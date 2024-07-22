@@ -1,24 +1,24 @@
 import Link from "next/link";
 import clsx from "clsx";
 
-import { MagnifyingGlassIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { XMarkIcon } from "@heroicons/react/24/outline";
 import { Bars3Icon } from "@heroicons/react/24/outline";
 
 const Navbar = () => {
    return (
-      <nav className="p-4 border-b">
-         <div className="md:p-2 flex items-center justify-between">
+      <nav className="p-4 h-[12%]">
+         <div className="flex items-center justify-between">
             <div className="nav-left">
                <Bars3Icon className="block md:hidden w-8 cursor-pointer" />
                <Link href="/" className="hidden md:block text-2xl font-bold">
-                  <span className="text-cyan-400">MAR</span>
-                  <span>Comic</span>
+                  <span>MAR</span>
+                  <span className="text-white">Comic</span>
                </Link>
             </div>
             <NavLink />
             <div className="nav-right flex items-center gap-x-4">
-               <MagnifyingGlassIcon className="w-9 border border-neutral-700 p-2 rounded-full cursor-pointer hover:bg-neutral-100 duration-100" />
-               <Link href="/signin" className="bg-gradient-to-r from-blue-500 to-blue-300 hover:from-blue-300 hover:to-blue-500 duration-100 text-white px-4 py-2 rounded-full">
+               {/* <MagnifyingGlassIcon className="w-9 border border-neutral-700 p-2 rounded-full cursor-pointer hover:bg-neutral-100 duration-100" /> */}
+               <Link href="/signin" className="bg-gray-600 hover:bg-gray-500 duration-100 text-white px-4 py-2 rounded-full">
                   Sign in
                </Link>
             </div>
@@ -34,12 +34,12 @@ const NavLink = () => {
          href: "/",
       },
       {
-         nav: "Genre",
-         href: "/genre",
+         nav: "About",
+         href: "/about",
       },
       {
-         nav: "Popular",
-         href: "/popular",
+         nav: "Contact",
+         href: "/contact",
       },
    ];
 
@@ -48,7 +48,7 @@ const NavLink = () => {
       <Link
          href={menu.href}
          key={menu.nav}
-         className={clsx("block py-2 md:flex md:py-0 hover:text-blue-500 duration-100", {
+         className={clsx("block text-white py-2 md:flex md:py-0 hover:text-gray-600 duration-100", {
             "font-semibold": menu.href == activePath,
          })}
       >
