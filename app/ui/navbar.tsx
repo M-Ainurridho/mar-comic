@@ -10,14 +10,13 @@ const Navbar = () => {
          <div className="flex items-center justify-between">
             <div className="nav-left">
                <Bars3Icon className="block md:hidden w-8 cursor-pointer" />
-               <Link href="/" className="hidden md:block text-2xl font-bold">
+               <Link href="/" className="hidden md:block text-3xl font-bold">
                   <span>MAR</span>
                   <span className="text-white">Comic</span>
                </Link>
             </div>
             <NavLink />
             <div className="nav-right flex items-center gap-x-4">
-               {/* <MagnifyingGlassIcon className="w-9 border border-neutral-700 p-2 rounded-full cursor-pointer hover:bg-neutral-100 duration-100" /> */}
                <Link href="/signin" className="bg-gray-600 hover:bg-gray-500 duration-100 text-white font-medium px-4 py-2 rounded-full shadow-md shadow-neutral-400">
                   Sign in
                </Link>
