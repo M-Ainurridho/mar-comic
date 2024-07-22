@@ -59,7 +59,7 @@ const NavLink = () => {
       <div className="nav-link">
          <div className="hidden md:flex items-center gap-x-8">{menus}</div>
          <aside>
-            <div className="block md:hidden fixed left-0 top-0 bottom-0 w-80 bg-neutral-700 text-white border-r py-5 px-3">
+            <div className="hidden fixed left-0 top-0 bottom-0 w-80 bg-neutral-700 text-white border-r py-5 px-3 z-10">
                <div className="flex justify-between items-center mb-4">
                   <Link href="/" className="text-2xl font-bold">
                      <span className="text-cyan-400">MAR</span>

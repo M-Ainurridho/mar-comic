@@ -20,17 +20,16 @@ interface Manga {
 }
 
 const Home = async ({ searchParams }: { searchParams: { search: string } }) => {
+   
    const search = searchParams?.search || "";
-
    const data = await fetchSearchManga(search);
-   console.log(data);
 
    return (
       <main className="h-screen bg-gradient-to-br from-purple-300 via-cyan-400 to-pink-300">
          <Navbar />
          <div className="h-[88%] flex items-center justify-center">
-            <div className="w-1/2 h-2/5">
-               <h1 className="font-bold text-6xl text-white mb-4">Search Manga..</h1>
+            <div className="w-full px-12 lg:px-0 md:w-[80%] lg:w-1/2 h-2/5">
+               <h1 className="font-bold text-4xl md:text-5xl lg:text-6xl text-white mb-2 md:mb-4">Search Manga..</h1>
                <div className="relative">
                   <Search />
 
@@ -41,7 +40,7 @@ const Home = async ({ searchParams }: { searchParams: { search: string } }) => {
                   {search && (
                      <>
                         {data.length > 0 ? (
-                           <div className="search-box absolute top-14 left-5 right-5 rounded overflow-y-auto h-40">
+                           <div className="search-box absolute top-12 md:top-14 left-5 right-5 rounded overflow-y-auto h-40">
                               {data.map((manga: Manga) => (
                                  <Link href={`/manga/${manga.id}`} key={manga.id} className="block p-2 px-6 bg-white hover:bg-gray-200 duration-100 cursor-pointer">
                                     {manga.attributes.title.en}
