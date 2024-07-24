@@ -1,21 +1,27 @@
+"use client";
+
 import Link from "next/link";
 import clsx from "clsx";
 
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { Bars3Icon } from "@heroicons/react/24/outline";
+import { useState } from "react";
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
+   const [sidebar, setSidebar] = useState<boolean>(false);
+
    return (
       <nav className="py-6 px-12 h-[12%]">
          <div className="flex items-center justify-between">
             <div className="nav-left">
-               <Bars3Icon className="block md:hidden w-8 cursor-pointer" />
+               <Bars3Icon className="block md:hidden w-8 cursor-pointer" onClick={() => setSidebar(!sidebar)} />
                <Link href="/" className="hidden md:block text-3xl font-bold">
                   <span>MAR</span>
                   <span className="text-white">Comic</span>
                </Link>
             </div>
-            <NavLink />
+            <NavLink sidebar={sidebar} onValueChange={setSidebar} />
             <div className="nav-right flex items-center gap-x-4">
                <Link href="/signin" className="bg-gray-600 hover:bg-gray-500 duration-100 text-white font-medium px-4 py-2 rounded-full shadow-md shadow-neutral-400">
                   Sign in
@@ -26,7 +32,13 @@ const Navbar = () => {
    );
 };
 
-const NavLink = () => {
+const NavLink = ({
+   sidebar,
+   onValueChange
+}: {
+   sidebar: boolean;
+   onValueChange: (val: boolean) => void
+}) => {
    const navigation = [
       {
          nav: "Home",
@@ -42,13 +54,13 @@ const NavLink = () => {
       },
    ];
 
-   const activePath = "/";
+   const pathname = usePathname()
    const menus = navigation.map((menu) => (
       <Link
          href={menu.href}
          key={menu.nav}
-         className={clsx("block text-white py-2 md:flex md:py-0 hover:text-gray-600 duration-100", {
-            "font-semibold": menu.href == activePath,
+         className={clsx("block text-white py-2 md:flex md:py-0 hover:text-blue-400 md:hover:text-gray-600 duration-100", {
+            "font-semibold": menu.href == pathname,
          })}
       >
          {menu.nav}
@@ -58,18 +70,21 @@ const NavLink = () => {
    return (
       <div className="nav-link">
          <div className="hidden md:flex items-center gap-x-8">{menus}</div>
-         <aside>
-            <div className="hidden fixed left-0 top-0 bottom-0 w-80 bg-neutral-700 text-white border-r py-5 px-3 z-10">
-               <div className="flex justify-between items-center mb-4">
-                  <Link href="/" className="text-2xl font-bold">
-                     <span className="text-cyan-400">MAR</span>
-                     <span>Comic</span>
-                  </Link>
-                  <XMarkIcon className="w-6 cursor-pointer" />
+         {/* Sidebar */}
+         {sidebar && (
+            <aside>
+               <div className="block md:hidden fixed left-0 top-0 bottom-0 w-80 bg-neutral-700 text-white py-5 px-3 z-10">
+                  <div className="flex justify-between items-center mb-4">
+                     <Link href="/" className="text-2xl font-bold">
+                        <span className="text-cyan-400">MAR</span>
+                        <span>Comic</span>
+                     </Link>
+                     <XMarkIcon className="w-7 cursor-pointer" onClick={() => onValueChange(!sidebar)} />
+                  </div>
+                  {menus}
                </div>
-               {menus}
-            </div>
-         </aside>
+            </aside>
+         )}
       </div>
    );
 };
