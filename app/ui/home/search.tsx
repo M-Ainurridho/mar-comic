@@ -2,7 +2,6 @@
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useDebouncedCallback } from "use-debounce";
-import LoadingSpin from "../loadings";
 
 const Search = () => {
    const searchParams = useSearchParams();

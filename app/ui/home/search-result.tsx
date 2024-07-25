@@ -1,15 +1,6 @@
 import { fetchSearchManga } from "@/app/config/api";
+import { Manga } from "@/app/config/schema";
 import Link from "next/link";
-
-interface Manga {
-   id: string;
-   type: string;
-   attributes: {
-      title: {
-         en: string;
-      };
-   };
-}
 
 const SearchResult = async ({ query }: { query: string }) => {
    const data = await fetchSearchManga(query);
@@ -20,7 +11,7 @@ const SearchResult = async ({ query }: { query: string }) => {
             (data.length > 0 ? (
                <div className="search-box absolute top-12 md:top-14 left-5 right-5 rounded overflow-y-auto h-40">
                   {data.map((manga: Manga) => {
-                     const title = manga.attributes.title.en.toLowerCase().split(" ").join("-");
+                     const title = manga.attributes.title?.en.toLowerCase().split(" ").join("~");
                      const url = `/manga/${manga.id}_${title}`;
 
                      return (
