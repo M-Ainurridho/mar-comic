@@ -38,7 +38,7 @@ const MangaRead = async ({
             <h1 className="text-2xl font-bold">{manga}</h1>
          </header>
 
-         <div className="grid grid-cols-7 gap-4 mb-4">
+         <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 text-center gap-4 mb-4">
             {data
                .sort((a: Chapter, b: Chapter) => Number(a.attributes.chapter) - Number(b.attributes.chapter))
                .map((manga: Chapter) =>
