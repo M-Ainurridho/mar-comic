@@ -7,14 +7,6 @@ import { MangaContext } from "../provider";
 import clsx from "clsx";
 import { Metadata } from "next";
 
-export const generateMetadata = (): Metadata => {
-   const { manga } = useContext(MangaContext);
-
-   return {
-      title: `Read Manga ${manga.name} | MAR Comic`,
-   };
-};
-
 const MangaDetail = ({ data }: { data: Chapter[] }) => {
    const { manga } = useContext(MangaContext);
 
