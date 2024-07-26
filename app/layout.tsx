@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { poppins } from "./ui/fonts";
+import { MangaProvider, ModalProvider } from "./ui/provider";
 
 export const metadata: Metadata = {
    title: {
@@ -17,7 +18,11 @@ export default function RootLayout({
 }>) {
    return (
       <html lang="en">
-         <body className={poppins.className}>{children}</body>
+         <body className={poppins.className}>
+            <MangaProvider>
+               <ModalProvider>{children}</ModalProvider>
+            </MangaProvider>
+         </body>
       </html>
    );
 }
